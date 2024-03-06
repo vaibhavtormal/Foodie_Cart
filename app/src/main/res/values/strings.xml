@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">FoodieCart</string>
+    <string name="next">Next</string>
+    <string name="enjoy_restaurant_quality_meals_n_at_home">Enjoy Restaurant Quality Meals\n at Home</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="foodie_cart">Foodie Cart</string>
+    <string name="deliver_favorite_food">Deliver Favorite Food</string>
+    <string name="sign_up_here">Sign Up Here</string>
+    <string name="name">Name</string>
+    <string name="email">Email...!</string>
+    <string name="password">Password</string>
+    <string name="or">Or</string>
+    <string name="sign_up_with">Sign Up With</string>
+    <string name="google">Google</string>
+    <string name="facebook">FaceBook</string>
+    <string name="create_account">Create Account</string>
+    <string name="already_have_an_account">Already Have An Account?</string>
+    <string name="design_by_n_vaibhav_tormal">Design By\n Vaibhav Tormal</string>
+    <string name="don_t_have_account">Don’t Have Account?</string>
+    <string name="default_web_client_id" translatable="false">89869772166-lujikpqt5m45nie9dfoa22a8fsqr1g77.apps.googleusercontent.com</string>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="profileFragment" type="id" />
+    <item name="profileFragment2" type="id" />
+    <item name="cartFragment" type="id" />
+    <item name="homeFragment" type="id" />
+    <item name="homeFragment2" type="id" />
+    <item name="bottomNavigationView2" type="id" />
+
+</resources>

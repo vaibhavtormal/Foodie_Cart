@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "89869772166",
+    "firebase_url": "https://foodie-cart-88318-default-rtdb.firebaseio.com",
+    "project_id": "foodie-cart-88318",
+    "storage_bucket": "foodie-cart-88318.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89869772166:android:a96659d0f18c337bbaf807",
+        "android_client_info": {
+          "package_name": "com.vaibhav.foodiecart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "89869772166-lujikpqt5m45nie9dfoa22a8fsqr1g77.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwsFTxefC0_onzetPIeu-w4y7fsHSVdD0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "89869772166-lujikpqt5m45nie9dfoa22a8fsqr1g77.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89869772166:android:eb35e89413b838b7baf807",
+        "android_client_info": {
+          "package_name": "com.vaibhav.foodiecartadminpanel2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "89869772166-acah1ek194tscqnh6fpluu4tmhifhone.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vaibhav.foodiecartadminpanel2",
+            "certificate_hash": "47f1d2974a20dc0aec4978eaf491f69bd9cfcae6"
+          }
+        },
+        {
+          "client_id": "89869772166-lujikpqt5m45nie9dfoa22a8fsqr1g77.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwsFTxefC0_onzetPIeu-w4y7fsHSVdD0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "89869772166-lujikpqt5m45nie9dfoa22a8fsqr1g77.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

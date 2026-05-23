@@ -129,9 +129,9 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 FancyToast.makeText(
                     this,
-                    "Login SuccessFully\uD83D\uDE0A",
+                    "Login Failed\\uD83D\\uDE42",
                     FancyToast.LENGTH_SHORT,
-                    FancyToast.SUCCESS,
+                    FancyToast.ERROR,
                     false
                 ).show()
                 updateUi(auth.currentUser)

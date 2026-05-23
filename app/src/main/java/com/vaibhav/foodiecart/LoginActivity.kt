@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -13,20 +12,16 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import com.shashank.sony.fancytoastlib.FancyToast
 import com.vaibhav.foodiecart.databinding.ActivityLoginBinding
-import com.vaibhav.foodiecart.model.UserModel
+
 
 class LoginActivity : AppCompatActivity() {
-    private var userName: String? = null
     private lateinit var email: String
     private lateinit var password: String
     private lateinit var auth: FirebaseAuth
-    private lateinit var database: DatabaseReference
     private lateinit var googleSignInClient: GoogleSignInClient
     private val binding: ActivityLoginBinding by lazy {
         ActivityLoginBinding.inflate(layoutInflater)
@@ -42,8 +37,6 @@ class LoginActivity : AppCompatActivity() {
 
         //innitialization of Firebase Auth
         auth = Firebase.auth
-        //innitialization of Firebase Database
-        database = Firebase.database.reference
         //innitialization of Google Sign-In
         googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
 
@@ -64,14 +57,7 @@ class LoginActivity : AppCompatActivity() {
                 )
                     .show()
             } else {
-                createUser()
-                FancyToast.makeText(
-                    this,
-                    "Login SuccessFully\uD83D\uDE0A",
-                    FancyToast.LENGTH_SHORT,
-                    FancyToast.SUCCESS,
-                    false
-                ).show()
+               loginUser()
             }
 
         }
@@ -129,44 +115,29 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-    private fun createUser() {
+    private fun loginUser() {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                val user = auth.currentUser
-                updateUi(user)
+                FancyToast.makeText(
+                    this,
+                    "Login SuccessFully\uD83D\uDE0A",
+                    FancyToast.LENGTH_SHORT,
+                    FancyToast.SUCCESS,
+                    false
+                ).show()
+                updateUi(auth.currentUser)
             } else {
-                auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        saveUserdata()
-                        val user = auth.currentUser
-                        updateUi(user)
-                    } else {
-                        FancyToast.makeText(
-                            this,
-                            "Sign-In Failed☹\uFE0F",
-                            FancyToast.LENGTH_SHORT,
-                            FancyToast.ERROR,
-                            false
-                        ).show()
-                    }
-                }
+                FancyToast.makeText(
+                    this,
+                    "Login SuccessFully\uD83D\uDE0A",
+                    FancyToast.LENGTH_SHORT,
+                    FancyToast.SUCCESS,
+                    false
+                ).show()
+                updateUi(auth.currentUser)
             }
         }
     }
-
-    private fun saveUserdata() {
-        //get data from field
-        email = binding.emailAddress.text.toString().trim()
-        password = binding.passwordtext.text.toString().trim()
-
-
-        val user = UserModel(userName, email, password)
-        val userId = FirebaseAuth.getInstance().currentUser!!.uid
-
-        //save data into data base
-        database.child("user").child(userId).setValue(user)
-    }
-
     override fun onStart() {
         super.onStart()
         val currentuser: FirebaseUser? = auth.currentUser

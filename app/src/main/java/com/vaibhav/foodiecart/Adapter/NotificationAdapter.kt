@@ -1,7 +1,9 @@
 package com.vaibhav.foodiecart.Adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
 import androidx.recyclerview.widget.RecyclerView
 import com.vaibhav.foodiecart.databinding.NotificationItemBinding
 
@@ -19,6 +21,7 @@ class NotificationAdapter(
 
 
     override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
+        anim(holder.itemView)
         holder.bind(position)
     }
 
@@ -32,5 +35,10 @@ class NotificationAdapter(
             }
         }
 
+    }
+    fun anim(view: View){
+        var animation = AlphaAnimation(0.0f,1.0f)
+        animation.duration = 1500
+        view.startAnimation(animation)
     }
 }

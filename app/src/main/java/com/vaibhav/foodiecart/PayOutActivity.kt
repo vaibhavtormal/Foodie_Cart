@@ -1,5 +1,6 @@
 package com.vaibhav.foodiecart
 
+import OrderDetails
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -9,9 +10,9 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.getValue
+import com.shashank.sony.fancytoastlib.FancyToast
 import com.vaibhav.foodiecart.databinding.ActivityPayOutBinding
-import com.vaibhav.foodiecart.model.OrderDetails
+
 
 class PayOutActivity : AppCompatActivity() {
     lateinit var binding: ActivityPayOutBinding
@@ -28,7 +29,6 @@ class PayOutActivity : AppCompatActivity() {
     private lateinit var foodItemQuantities: ArrayList<Int>
     private lateinit var databaseReference: DatabaseReference
     private lateinit var userId: String
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,14 +65,13 @@ class PayOutActivity : AppCompatActivity() {
             phone = binding.phoneNumber.text.toString().trim()
 
             if (name.isBlank() && address.isBlank() && phone.isBlank()) {
-                Toast.makeText(this, "Please Enter All the Details", Toast.LENGTH_SHORT).show()
+                FancyToast.makeText(this, "Please Enter All the Details", FancyToast.LENGTH_SHORT,FancyToast.INFO,false).show()
             } else {
                 placeOrder()
             }
 
         }
     }
-
     private fun placeOrder() {
         userId = auth.currentUser?.uid ?: ""
         val time = System.currentTimeMillis()
@@ -85,8 +84,8 @@ class PayOutActivity : AppCompatActivity() {
             foodItemImage,
             foodItemQuantities,
             address,
-            totalAmount,
             phone,
+            totalAmount,
             time,
             itemPushKey,
             false,
@@ -101,7 +100,6 @@ class PayOutActivity : AppCompatActivity() {
 
         }
     }
-
     private fun addOrdertoHistory(orderDetails: OrderDetails) {
         databaseReference.child("user").child(userId).child("BuyHistory")
             .child(orderDetails.itemPushKey!!)
@@ -109,15 +107,13 @@ class PayOutActivity : AppCompatActivity() {
 
             }
             .addOnFailureListener {
-                Toast.makeText(this, "Failed to Order☹\uFE0F", Toast.LENGTH_SHORT).show()
+                FancyToast.makeText(this, "Failed to Order☹\uFE0F", FancyToast.LENGTH_SHORT,FancyToast.ERROR,false).show()
             }
     }
-
     private fun removeItemFromCart() {
         val cartItemsReference = databaseReference.child("user").child(userId).child("CartItems")
         cartItemsReference.removeValue()
     }
-
     private fun calculateTotoalAmount(): Int {
         var totalAmount = 0;
         for (i in 0 until foodItemPrice.size) {
@@ -133,7 +129,6 @@ class PayOutActivity : AppCompatActivity() {
         }
         return totalAmount
     }
-
     private fun setUserData() {
         val user = auth.currentUser
         if (user != null) {
@@ -152,10 +147,7 @@ class PayOutActivity : AppCompatActivity() {
                         }
                     }
                 }
-
-                override fun onCancelled(error: DatabaseError) {
-
-                }
+                override fun onCancelled(error: DatabaseError) {}
             })
         }
     }

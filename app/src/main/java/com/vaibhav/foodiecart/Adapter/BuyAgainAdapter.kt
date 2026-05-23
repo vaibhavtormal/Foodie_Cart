@@ -3,7 +3,9 @@ package com.vaibhav.foodiecart.Adapter
 import android.content.Context
 import android.net.Uri
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.vaibhav.foodiecart.databinding.BuyAgainItemBinding
@@ -17,6 +19,7 @@ class BuyAgainAdapter(
     RecyclerView.Adapter<BuyAgainAdapter.BuyAgainViewHolder>() {
 
     override fun onBindViewHolder(holder: BuyAgainViewHolder, position: Int) {
+        anim(holder.itemView)
         holder.bind(
             buyAgainFoodName[position],
             buyAgainFoodPrice[position],
@@ -44,6 +47,9 @@ class BuyAgainAdapter(
         }
 
     }
-
-
+    fun anim(view: View){
+        var animation = AlphaAnimation(0.0f,1.0f)
+        animation.duration = 1500
+        view.startAnimation(animation)
+    }
 }

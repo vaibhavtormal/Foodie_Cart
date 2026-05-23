@@ -7,6 +7,7 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.shashank.sony.fancytoastlib.FancyToast
 import com.vaibhav.foodiecart.databinding.ActivityDetailsBinding
 import com.vaibhav.foodiecart.model.CartItems
 
@@ -38,7 +39,7 @@ class DetailsActivity : AppCompatActivity() {
 
         }
 
-        binding.imageButton.setOnClickListener {
+        binding.backButton.setOnClickListener {
             finish()
         }
         binding.addItemButton.setOnClickListener {
@@ -60,15 +61,13 @@ class DetailsActivity : AppCompatActivity() {
         //save data to cart item to firebase  data bse
         database.child("user").child(userId).child("CartItems").push().setValue(cartItem)
             .addOnSuccessListener {
-                Toast.makeText(
+                FancyToast.makeText(
                     this,
                     "Items added into cart successfully\uD83E\uDD29",
-                    Toast.LENGTH_SHORT
+                    FancyToast.LENGTH_SHORT,FancyToast.SUCCESS,false
                 ).show()
             }.addOnFailureListener {
-            Toast.makeText(this, "Item Not added☹\uFE0F", Toast.LENGTH_SHORT).show()
+            FancyToast.makeText(this, "Item Not added☹\uFE0F", FancyToast.LENGTH_SHORT,FancyToast.ERROR,false).show()
         }
-
-
     }
 }

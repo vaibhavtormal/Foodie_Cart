@@ -24,7 +24,7 @@
         android:fontFamily="@font/yeonsung"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Menu" />
+        android:text="@string/menu" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/menuRecyclerView"

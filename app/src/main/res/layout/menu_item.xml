@@ -32,6 +32,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:scaleType="centerCrop"
+                android:elevation="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
@@ -65,13 +66,14 @@
             <TextView
                 android:id="@+id/menuaddtocart"
                 android:layout_width="80dp"
+                android:elevation="10dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/addtocartshape"
                 android:fontFamily="@font/protestriot_regular"
                 android:gravity="center"
-                android:text="Add to Cart"
+                android:text="@string/add_to_cart"
                 android:paddingEnd="8dp"
                 android:paddingStart="8dp"
                 android:textColor="@color/white"

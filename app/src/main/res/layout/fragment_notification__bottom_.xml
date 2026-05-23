@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:fontFamily="@font/protestriot_regular"
-            android:text="Notification"
+            android:text="@string/notification"
             android:textColor="@color/textcolor"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"

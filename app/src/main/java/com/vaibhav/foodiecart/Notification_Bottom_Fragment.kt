@@ -9,7 +9,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.vaibhav.foodiecart.Adapter.NotificationAdapter
 import com.vaibhav.foodiecart.databinding.FragmentNotificationBottomBinding
 
-
 class Notification_Bottom_Fragment : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentNotificationBottomBinding
 
@@ -17,7 +16,6 @@ class Notification_Bottom_Fragment : BottomSheetDialogFragment() {
         super.onCreate(savedInstanceState)
 
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,10 +38,6 @@ class Notification_Bottom_Fragment : BottomSheetDialogFragment() {
         binding.notificationRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.notificationRecyclerView.adapter = adapter
         return binding.root
-
     }
-
-    companion object {
-
-    }
+    companion object {}
 }

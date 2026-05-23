@@ -1,12 +1,13 @@
-package com.vaibhav.foodiecart.Adapter
+/*package com.vaibhav.foodiecart.Adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
 
 import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -51,6 +52,7 @@ class CartAdapter(
     }
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
+        anim(holder.itemView)
         holder.bind(position)
     }
 
@@ -63,7 +65,6 @@ class CartAdapter(
         itemQuantity.addAll(cartQuantity)
         return itemQuantity
     }
-
     inner class CartViewHolder(private val binding: CartItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(position: Int) {
@@ -97,7 +98,6 @@ class CartAdapter(
                 }
             }
         }
-
         private fun increaseQuantity(position: Int) {
             if (itemQuantities[position] < 10) {
                 itemQuantities[position]++
@@ -105,7 +105,6 @@ class CartAdapter(
                 binding.cartitemquantity.text = itemQuantities[position].toString()
             }
         }
-
         private fun decreaseQuantity(position: Int) {
             if (itemQuantities[position] > 1) {
                 itemQuantities[position]--
@@ -113,7 +112,6 @@ class CartAdapter(
                 binding.cartitemquantity.text = itemQuantities[position].toString()
             }
         }
-
         @SuppressLint("SuspiciousIndentation")
         private fun deleteItem(position: Int) {
             val positionRetirieve = position
@@ -145,7 +143,6 @@ class CartAdapter(
             }
         }
     }
-
     private fun getUniqueKeyAtPostion(positionRetirieve: Int, onComplete: (String?) -> Unit) {
         cartItemsReference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -159,12 +156,121 @@ class CartAdapter(
                 }
                 onComplete(uniqueKey)
             }
-
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
         })
     }
-
-
+    fun anim(view: View){
+        var animation = AlphaAnimation(0.0f,1.0f)
+        animation.duration = 1500
+        view.startAnimation(animation)
+    }
 }
+^^ crash the app after click on the delete button
+*/
+package com.vaibhav.foodiecart.Adapter
+
+import android.annotation.SuppressLint
+import android.content.Context
+import android.net.Uri
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
+import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.google.firebase.database.DatabaseReference
+import com.vaibhav.foodiecart.databinding.CartItemBinding
+
+class CartAdapter(
+    private val context: Context,
+    private val cartItems: MutableList<String>,
+    private val cartItemPrice: MutableList<String>,
+    private var cartDescription: MutableList<String>,
+    private var cartImage: MutableList<String>,
+    private val cartQuantity: MutableList<Int>,
+    private var cartIngredients: MutableList<String>,
+    private val cartKeys: MutableList<String>,
+    private val cartItemsReference: DatabaseReference
+) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
+
+    private var itemQuantities: MutableList<Int> = cartQuantity.toMutableList()
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
+        val binding = CartItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CartViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
+        anim(holder.itemView)
+        holder.bind(position)
+    }
+
+    override fun getItemCount(): Int = cartItems.size
+
+    fun getUpdatedItemsQuantities(): MutableList<Int> {
+        return itemQuantities
+    }
+
+    inner class CartViewHolder(private val binding: CartItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(position: Int) {
+            binding.apply {
+                val quantity = itemQuantities[position]
+                cartFoodName.text = cartItems[position]
+                cartItenPrice.text = cartItemPrice[position]
+                Glide.with(context).load(Uri.parse(cartImage[position])).into(cartimage)
+                cartitemquantity.text = quantity.toString()
+
+                minusButton.setOnClickListener {
+                    if (itemQuantities[position] > 1) {
+                        itemQuantities[position]--
+                        cartitemquantity.text = itemQuantities[position].toString()
+                    }
+                }
+
+                PlusButton.setOnClickListener {
+                    if (itemQuantities[position] < 10) {
+                        itemQuantities[position]++
+                        cartitemquantity.text = itemQuantities[position].toString()
+                    }
+                }
+
+                deletebuttn.setOnClickListener {
+                    val key = cartKeys[position]
+                    cartItemsReference.child(key).removeValue().addOnSuccessListener {
+                        removeItem(position)
+                        Toast.makeText(context, "Item Deleted", Toast.LENGTH_SHORT).show()
+                    }.addOnFailureListener {
+                        Toast.makeText(context, "Failed to Delete", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun removeItem(position: Int) {
+        cartItems.removeAt(position)
+        cartItemPrice.removeAt(position)
+        cartDescription.removeAt(position)
+        cartImage.removeAt(position)
+        cartQuantity.removeAt(position)
+        cartIngredients.removeAt(position)
+        cartKeys.removeAt(position)
+        itemQuantities.removeAt(position)
+
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, cartItems.size)
+    }
+
+    private fun anim(view: View) {
+        val animation = AlphaAnimation(0.0f, 1.0f)
+        animation.duration = 1500
+        view.startAnimation(animation)
+    }
+}
+
+

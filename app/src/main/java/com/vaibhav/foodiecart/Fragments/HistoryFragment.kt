@@ -1,12 +1,14 @@
 package com.vaibhav.foodiecart.Fragments
 
+import OrderDetails
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
@@ -16,10 +18,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.vaibhav.foodiecart.Adapter.BuyAgainAdapter
-import com.vaibhav.foodiecart.R
 import com.vaibhav.foodiecart.databinding.FragmentHistoryBinding
-import com.vaibhav.foodiecart.model.OrderDetails
-
 
 class HistoryFragment : Fragment() {
     private lateinit var binding: FragmentHistoryBinding
@@ -29,42 +28,40 @@ class HistoryFragment : Fragment() {
     private lateinit var userId: String
     private var listOfOrderItem: MutableList<OrderDetails> = mutableListOf()
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHistoryBinding.inflate(layoutInflater, container, false)
+        // Initialize firebase auth
         auth = FirebaseAuth.getInstance()
+        // Initialize firebase database
         database = FirebaseDatabase.getInstance()
-        //retrieve and display the user Order History
+        // Retrieve and display the user Order History
         retrieveBuyHistory()
 
+        // Recent buy button click
+        binding.receivedButton.setOnClickListener {
+            updateOrderStatus()
+        }
         return binding.root
-
+    }
+    private fun updateOrderStatus() {
+        if (listOfOrderItem.isNotEmpty()) {
+            val itemPushkey = listOfOrderItem[0].itemPushKey
+            val completeOrderReference =
+                database.reference.child("CompletedOrder").child(itemPushkey!!)
+            completeOrderReference.child("paymentReceived").setValue(true)
+                .addOnSuccessListener {
+                    Log.d("HistoryFragment", "Order status updated successfully.")
+                }
+                .addOnFailureListener {
+                    Log.e("HistoryFragment", "Failed to update order status: ${it.message}")
+                }
+        }
     }
 
-    /*   private fun retrieveBuyHistory() {
-           binding.recentBuyItem.visibility = View.INVISIBLE
-           userId = auth.currentUser?.uid?:""
-           val buyItemReference : DatabaseReference = database.reference.child("user").child(userId).child("BuyHistory")
-           val shortingQuery = buyItemReference.orderByChild("currenTime")
-           shortingQuery.addListenerForSingleValueEvent(object :ValueEventListener{
-               override fun onDataChange(snapshot: DataSnapshot) {
-                   for (buySnapShot in snapshot.children){
-                       val buyHistoryItem = buySnapShot.getValue(OrderDetails::class.java)
-                       buyHistoryItem?.let {
-                           listOfOrderItem.add(it)
-                       }
-                   }
-                   listOfOrderItem.reverse()
-                   if (listOfOrderItem.isNotEmpty()){
-                     setDataINRecentBuyItem()
-                   }
-               }
-               override fun onCancelled(error: DatabaseError) {
-               }
-           })
-       }*/
     private fun retrieveBuyHistory() {
         binding.recentBuyItem.visibility = View.INVISIBLE
         userId = auth.currentUser?.uid ?: ""
@@ -98,10 +95,8 @@ class HistoryFragment : Fragment() {
                 // Handle onCancelled event if necessary
                 Log.e("FirebaseError", "Database Error: ${error.message}")
             }
-
         })
     }
-
 
     private fun setDataINRecentBuyItem() {
         binding.recentBuyItem.visibility = View.VISIBLE
@@ -118,12 +113,16 @@ class HistoryFragment : Fragment() {
                 image?.let {
                     val uri = Uri.parse(it)
                     Glide.with(requireContext()).load(uri).into(buyAgainFoodImage)
-
-
                     listOfOrderItem.reverse()
                     if (listOfOrderItem.isNotEmpty()) {
 
                     }
+                }
+                val isOrderAccepted = listOfOrderItem[0].orderAccepted ?: true
+                Log.d("TAG", "setDataINRecentBuyItem:$isOrderAccepted ")
+                if (isOrderAccepted == true) {
+                    orderStatus.background.setTint(Color.GREEN)
+                    receivedButton.visibility = View.VISIBLE
                 }
             }
         }

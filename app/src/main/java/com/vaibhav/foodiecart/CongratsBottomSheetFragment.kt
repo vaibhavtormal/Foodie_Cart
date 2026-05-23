@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.vaibhav.foodiecart.databinding.ActivityMainBinding
 import com.vaibhav.foodiecart.databinding.FragmentCongratsBottomSheetBinding
 
 class CongratsBottomSheetFragment : BottomSheetDialogFragment() {

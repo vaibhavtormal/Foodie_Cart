@@ -31,7 +31,7 @@
             android:textColor="@color/textcolor"
             android:textSize="24sp"
             android:fontFamily="@font/yeonsung"
-            android:text="Edit"
+            android:text="@string/edit"
             android:layout_gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingLeft="8dp"
-                android:text="Name"
+                android:text="@string/name"
                 android:textColor="@color/black"/>
 
             <EditText
@@ -70,7 +70,7 @@
                 android:inputType="text"
                 android:fontFamily="@font/lato_regular"
                 android:textColor="@color/black"
-                android:hint="Name" />
+                android:hint="@string/name" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingLeft="8dp"
-                android:text="Address"
+                android:text="@string/address"
                 android:textColor="@color/black"/>
 
             <EditText
@@ -106,7 +106,7 @@
                 android:textColor="@color/black"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:hint="Enter your Address" />
+                android:hint="@string/enter_your_address" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -127,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingLeft="8dp"
-                android:text="Phone"
+                android:text="@string/phone"
                 android:textColor="@color/black"/>
 
             <EditText
@@ -140,7 +140,7 @@
                 android:inputType="phone"
                 android:fontFamily="@font/lato_regular"
                 android:textColor="@color/black"
-                android:hint="Enter your Phone Number" />
+                android:hint="@string/enter_your_phone_number" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -161,7 +161,7 @@
                 android:fontFamily="@font/yeonsung"
                 android:layout_weight="1"
                 android:paddingLeft="8dp"
-                android:text="Payment Method"
+                android:text="@string/payment_method"
                 android:textColor="@color/black"/>
 
             <ImageView
@@ -189,7 +189,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingLeft="8dp"
-                android:text="Total Amount"
+                android:text="@string/total_amount"
                 android:textColor="@color/black"
                 android:fontFamily="@font/yeonsung"/>
 
@@ -216,7 +216,7 @@
         android:id="@+id/PlaceMyOrderBtn"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:text="Place My Order"
+        android:text="@string/place_my_order"
         android:textColor="@color/textcolor"
         android:textAllCaps="false"
         android:fontFamily="@font/yeonsung"

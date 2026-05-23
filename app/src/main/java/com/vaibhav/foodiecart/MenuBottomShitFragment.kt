@@ -19,7 +19,6 @@ import com.vaibhav.foodiecart.model.MenuItem
 
 class MenuBottomShitFragment : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentMenuBottomShitBinding
-
     private lateinit var database: FirebaseDatabase
     private lateinit var menuItems: MutableList<MenuItem>
 
@@ -28,7 +27,6 @@ class MenuBottomShitFragment : BottomSheetDialogFragment() {
         super.onCreate(savedInstanceState)
 
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,11 +36,8 @@ class MenuBottomShitFragment : BottomSheetDialogFragment() {
             dismiss()
         }
         retrieveMenuItems()
-
-
         return binding.root
     }
-
     private fun retrieveMenuItems() {
         database = FirebaseDatabase.getInstance()
         val foodRef: DatabaseReference = database.reference.child("menu")
@@ -57,15 +52,9 @@ class MenuBottomShitFragment : BottomSheetDialogFragment() {
                 //once data receive , set to adapter
                 setAdapter()
             }
-
-
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-
+            override fun onCancelled(error: DatabaseError) {}
         })
     }
-
     private fun setAdapter() {
         if (menuItems.isNotEmpty()) {
             val adapter = MenuAdapter(menuItems, requireContext())
@@ -75,11 +64,6 @@ class MenuBottomShitFragment : BottomSheetDialogFragment() {
         } else {
             Log.d("ITEMS", "setAdapter: Data not set")
         }
-
     }
-
-    companion object {
-
-    }
-
+    companion object {}
 }

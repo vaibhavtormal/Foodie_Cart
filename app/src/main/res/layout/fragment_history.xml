@@ -18,10 +18,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:text="Recent buy"
             android:fontFamily="@font/yeonsung"
-            android:textSize="16sp"
+            android:text="@string/recent_buy"
             android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,8 +52,7 @@
                     android:src="@drawable/menu2"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/buyAgainFoodName"
@@ -61,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:fontFamily="@font/yeonsung"
-                    android:text="Food Name"
+                    android:text="@string/food_name"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/buyAgainFoodPrice"
@@ -73,7 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lato_bolditalic"
-                    android:text="$5"
+                    android:text="@string/_5"
                     android:textColor="@color/textcolor"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -86,7 +85,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginEnd="32dp"
-                    app:cardBackgroundColor="#4CAF50"
+                    app:cardBackgroundColor="#C6C6C6"
                     app:cardCornerRadius="20dp"
                     app:layout_constraintBottom_toTopOf="@+id/receivedButton"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -104,9 +103,10 @@
                     android:layout_height="20dp"
                     android:background="@drawable/addtocartshape"
                     android:fontFamily="@font/yeonsung"
-                    android:text="Received"
+                    android:text="@string/received"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
+                    android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/orderStatus"
                     app:layout_constraintStart_toStartOf="@+id/orderStatus"
@@ -120,10 +120,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:text="Previously buy"
             android:fontFamily="@font/yeonsung"
-            android:textSize="16sp"
+            android:text="@string/previously_buy"
             android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
@@ -134,8 +134,8 @@
             android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:listitem="@layout/buy_again_item"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView16" />
+            app:layout_constraintTop_toBottomOf="@+id/textView16"
+            tools:listitem="@layout/buy_again_item" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

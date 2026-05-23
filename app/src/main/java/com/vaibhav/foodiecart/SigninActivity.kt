@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.database
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.shashank.sony.fancytoastlib.FancyToast
 import com.vaibhav.foodiecart.databinding.ActivitySigninBinding
 import com.vaibhav.foodiecart.model.UserModel
 
@@ -52,7 +53,7 @@ class SigninActivity : AppCompatActivity() {
             password = binding.passwordtext.text.toString().trim()
 
             if (username.isBlank() || password.isBlank() || email.isBlank()) {
-                Toast.makeText(this, "Please Fill All the Details", Toast.LENGTH_SHORT).show()
+                FancyToast.makeText(this, "Please Fill All the Details", FancyToast.LENGTH_SHORT,FancyToast.CONFUSING,false).show()
             } else {
                 createAccount(email, password)
             }
@@ -73,7 +74,7 @@ class SigninActivity : AppCompatActivity() {
             if (result.resultCode == Activity.RESULT_OK) {
                 val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
                 if (task.isSuccessful) {
-                    Toast.makeText(this, "Sign-In SuccessFull\uD83E\uDD29", Toast.LENGTH_SHORT)
+                    FancyToast.makeText(this, "Sign-In SuccessFull\uD83E\uDD29", FancyToast.LENGTH_SHORT,FancyToast.SUCCESS,false)
                         .show()
                     val account: GoogleSignInAccount? = task.result
                     val credential = GoogleAuthProvider.getCredential(account?.idToken, null)
@@ -88,19 +89,19 @@ class SigninActivity : AppCompatActivity() {
                     }
                 }
             } else {
-                Toast.makeText(this, "Sign-In Failed\uD83D\uDE42", Toast.LENGTH_SHORT).show()
+                FancyToast.makeText(this, "Sign-In Failed\uD83D\uDE42", FancyToast.LENGTH_SHORT,FancyToast.ERROR,false).show()
             }
         }
 
     private fun createAccount(email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                Toast.makeText(this, "Account Created Successfully", Toast.LENGTH_SHORT).show()
+                FancyToast.makeText(this, "Account Created Successfully", FancyToast.LENGTH_SHORT,FancyToast.SUCCESS,false).show()
                 saveUserData()
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             } else {
-                Toast.makeText(this, "Account Creation Failed", Toast.LENGTH_SHORT).show()
+                FancyToast.makeText(this, "Account Creation Failed", FancyToast.LENGTH_SHORT,FancyToast.ERROR,false).show()
                 Log.d("Account", "createAccount: Failure", task.exception)
             }
         }

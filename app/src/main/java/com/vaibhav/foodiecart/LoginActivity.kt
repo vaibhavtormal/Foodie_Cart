@@ -17,6 +17,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.shashank.sony.fancytoastlib.FancyToast
 import com.vaibhav.foodiecart.databinding.ActivityLoginBinding
 import com.vaibhav.foodiecart.model.UserModel
 
@@ -54,11 +55,23 @@ class LoginActivity : AppCompatActivity() {
 
 
             if (email.isBlank() || password.isBlank()) {
-                Toast.makeText(this, "Please Enter All Information\uD83E\uDD2D", Toast.LENGTH_SHORT)
+                FancyToast.makeText(
+                    this,
+                    "Please Enter All Information\uD83E\uDD2D",
+                    FancyToast.LENGTH_SHORT,
+                    FancyToast.WARNING,
+                    false
+                )
                     .show()
             } else {
                 createUser()
-                Toast.makeText(this, "Login SuccessFully\uD83D\uDE0A", Toast.LENGTH_SHORT).show()
+                FancyToast.makeText(
+                    this,
+                    "Login SuccessFully\uD83D\uDE0A",
+                    FancyToast.LENGTH_SHORT,
+                    FancyToast.SUCCESS,
+                    false
+                ).show()
             }
 
         }
@@ -73,12 +86,19 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+
     private val launcher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
                 if (task.isSuccessful) {
-                    Toast.makeText(this, "Sign-In SuccessFull\uD83E\uDD29", Toast.LENGTH_SHORT)
+                    FancyToast.makeText(
+                        this,
+                        "Sign-In SuccessFull\uD83E\uDD29",
+                        FancyToast.LENGTH_SHORT,
+                        FancyToast.SUCCESS,
+                        false
+                    )
                         .show()
                     val account: GoogleSignInAccount? = task.result
                     val credential = GoogleAuthProvider.getCredential(account?.idToken, null)
@@ -87,13 +107,25 @@ class LoginActivity : AppCompatActivity() {
                             startActivity(Intent(this, MainActivity::class.java))
                             finish()
                         } else {
-                            Toast.makeText(this, "Sign-In Failed\uD83D\uDE42", Toast.LENGTH_SHORT)
+                            FancyToast.makeText(
+                                this,
+                                "Sign-In Failed\uD83D\uDE42",
+                                FancyToast.LENGTH_SHORT,
+                                FancyToast.ERROR,
+                                false
+                            )
                                 .show()
                         }
                     }
                 }
             } else {
-                Toast.makeText(this, "Sign-In Failed\uD83D\uDE42", Toast.LENGTH_SHORT).show()
+                FancyToast.makeText(
+                    this,
+                    "Sign-In Failed\uD83D\uDE42",
+                    FancyToast.LENGTH_SHORT,
+                    FancyToast.ERROR,
+                    false
+                ).show()
             }
         }
 
@@ -109,7 +141,13 @@ class LoginActivity : AppCompatActivity() {
                         val user = auth.currentUser
                         updateUi(user)
                     } else {
-                        Toast.makeText(this, "Sign-In Failed☹\uFE0F", Toast.LENGTH_SHORT).show()
+                        FancyToast.makeText(
+                            this,
+                            "Sign-In Failed☹\uFE0F",
+                            FancyToast.LENGTH_SHORT,
+                            FancyToast.ERROR,
+                            false
+                        ).show()
                     }
                 }
             }

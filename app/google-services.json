@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "89869772166-httrruod2pmkipa88si755bcb13tp60i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vaibhav.foodiecart",
+            "certificate_hash": "47f1d2974a20dc0aec4978eaf491f69bd9cfcae6"
+          }
+        },
+        {
           "client_id": "89869772166-lujikpqt5m45nie9dfoa22a8fsqr1g77.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -11,7 +11,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.vaibhav.foodiecart.R
+import com.shashank.sony.fancytoastlib.FancyToast
 import com.vaibhav.foodiecart.databinding.FragmentProfileBinding
 import com.vaibhav.foodiecart.model.UserModel
 
@@ -23,9 +23,7 @@ class ProfileFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,6 +31,19 @@ class ProfileFragment : Fragment() {
 
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         setUserData()
+        binding.apply {
+            profilename.isEnabled = false
+            profileEmail.isEnabled= false
+            profileAddresss.isEnabled= false
+            profilePhone.isEnabled= false
+        binding.Editbutton.setOnClickListener{
+
+                profilename.isEnabled=!profilename.isEnabled
+                profileEmail.isEnabled=!profileEmail.isEnabled
+                profileAddresss.isEnabled=!profileAddresss.isEnabled
+                profilePhone.isEnabled=!profilePhone.isEnabled
+            }
+        }
         binding.saveInfoButton.setOnClickListener {
             val name = binding.profilename.text.toString()
             val email = binding.profileEmail.text.toString()
@@ -41,7 +52,6 @@ class ProfileFragment : Fragment() {
             updateUserData(name, email, address, phone)
         }
         return binding.root
-
     }
 
     private fun updateUserData(name: String, email: String, address: String, phone: String) {
@@ -56,17 +66,17 @@ class ProfileFragment : Fragment() {
                 "phone" to phone
             )
             userReference.setValue(userData).addOnSuccessListener {
-                Toast.makeText(
+                FancyToast.makeText(
                     requireContext(),
                     "Profile Update, Successfully\uD83D\uDE07",
-                    Toast.LENGTH_SHORT
+                    FancyToast.LENGTH_SHORT,FancyToast.SUCCESS,false
                 ).show()
 
             }.addOnFailureListener {
-                Toast.makeText(
+                FancyToast.makeText(
                     requireContext(),
                     "Profile Update, Failed\uD83D\uDE1E",
-                    Toast.LENGTH_SHORT
+                    FancyToast.LENGTH_SHORT,FancyToast.ERROR,false
                 ).show()
             }
 
@@ -87,7 +97,6 @@ class ProfileFragment : Fragment() {
                             binding.profileAddresss.setText(userProfile.address)
                             binding.profileEmail.setText(userProfile.email)
                             binding.profilePhone.setText(userProfile.phone)
-
                         }
                     }
                 }

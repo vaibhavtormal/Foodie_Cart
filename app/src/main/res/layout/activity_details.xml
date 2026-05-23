@@ -9,10 +9,11 @@
     tools:context=".DetailsActivity">
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/backButton"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="8dp"
+        android:scaleType="centerCrop"
         android:layout_marginTop="16dp"
         android:src="@drawable/arrow_left"
         android:background="@android:color/transparent"
@@ -24,13 +25,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Food Name"
+        android:text="@string/food_name2"
         android:textSize="24sp"
         android:fontFamily="@font/yeonsung"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+        app:layout_constraintTop_toBottomOf="@+id/backButton" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView4"
@@ -45,6 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/DetailFoodName">
 
         <ImageView
+            android:elevation="20dp"
             android:id="@+id/detailFoodImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,13 +59,12 @@
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/yeonsung"
-        android:textSize="20sp"
-        android:textColor="@color/black"
         android:layout_marginTop="16dp"
-        android:text="Short description "
-        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/yeonsung"
+        android:text="@string/short_description"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/cardView4"
         app:layout_constraintTop_toBottomOf="@+id/cardView4" />
 
     <TextView
@@ -71,10 +72,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Lorem ipsum dolor sit amet,  consectetur adipiscing elit,  sed do eiusmod tempor incididunt  ut labore et dolore magna aliqua. Ut enim ad "
+        android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_sed_do_eiusmod_tempor_incididunt_ut_labore_et_dolore_magna_aliqua_ut_enim_ad"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/cardView4"
         app:layout_constraintStart_toStartOf="@+id/textView18"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
@@ -83,7 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Ingredients"
+        android:text="@string/ingredients"
         android:fontFamily="@font/yeonsung"
         android:textSize="20sp"
         android:textColor="@color/black"
@@ -97,8 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Strowberry\n
-Cream\nwheat"
+        android:text="@string/strowberry_n_cream_nwheat"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -112,8 +111,9 @@ Cream\nwheat"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
+        android:elevation="10dp"
         android:background="@drawable/addtocartshape"
-        android:text="Add to Cart"
+        android:text="@string/add_to_cart"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:fontFamily="@font/protestriot_regular"

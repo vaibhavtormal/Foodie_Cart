@@ -14,7 +14,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:textSize="25sp"
-        android:text="Choose Your Location"
+        android:text="@string/choose_your_location"
         android:fontFamily="@font/yeonsung"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +37,8 @@
             android:layout_height="match_parent"
             android:id="@+id/listOfLocation"
             android:inputType="none"
-            android:text="Choose Location"
+            android:paddingStart="18dp"
+            android:text="@string/choose_location"
             android:textSize="14sp"
             android:fontFamily="@font/lato_regular"/>
 
@@ -52,7 +53,7 @@
         android:layout_marginBottom="32dp"
         android:layout_weight="1"
         android:fontFamily="@font/lato_regular"
-        android:text="To provide you with the best dining experience, we need your permission to access your device's location. By enabling location services, we can offer personalized restaurant recommendations, accurate delivery estimates, and ensure a seamless food delivery experience."
+        android:text="@string/to_provide_you_with_the_best_dining_experience_we_need_your_permission_to_access_your_device_s_location_by_enabling_location_services_we_can_offer_personalized_restaurant_recommendations_accurate_delivery_estimates_and_ensure_a_seamless_food_delivery_experience"
 
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/stubbron"
@@ -65,7 +66,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
-        android:text="Design By\n Stubborn"
+        android:text="@string/design_by_n_stubborn"
         android:textSize="16dp"
         android:textAlignment="center"
         android:fontFamily="@font/yeonsung"

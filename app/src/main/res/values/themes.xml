@@ -1,9 +1,24 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.FoodieCart" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
+<!-- <resources xmlns:tools="http://schemas.android.com/tools">
+  <!- Base application theme. -->
+<!-- <style name="Base.Theme.FoodieCart" parent="Theme.Material3.DayNight.NoActionBar">
+     <!- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<!--  </style>
+
+  <style name="Theme.FoodieCart" parent="Base.Theme.FoodieCart" />
+</resources> ->
+
+<!- styles.xml -->
+
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/amazon_primary</item>
+        <item name="colorPrimaryDark">@color/amazon_primary_dark</item>
+        <item name="colorAccent">@color/textcolor</item>
+        <item name="android:windowLightStatusBar">true</item> <!-- For dark status bar text -->
     </style>
 
-    <style name="Theme.FoodieCart" parent="Base.Theme.FoodieCart" />
 </resources>

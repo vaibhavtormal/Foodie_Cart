@@ -4,7 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.vaibhav.foodiecart.DetailsActivity
@@ -25,6 +27,7 @@ class MenuAdapter(
 
 
     override fun onBindViewHolder(holder: MenuViewHolder, position: Int) {
+        anim(holder.itemView)
         holder.bind(position)
     }
 
@@ -68,6 +71,11 @@ class MenuAdapter(
             }
         }
 
+    }
+    fun anim(view: View){
+        var animation = AlphaAnimation(0.0f,1.0f)
+        animation.duration = 1500
+        view.startAnimation(animation)
     }
 
 }
